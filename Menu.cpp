@@ -58,57 +58,53 @@ void Menu::run() {
         }
 
         int option = -1;
-        while (option != 0 && option != 6) {
+        while (true) {
             std::cout << "\nMain Menu:" << std::endl;
             std::cout << "1. Run Brute Force Algorithm" << std::endl;
-            std::cout << "2. Run Dynamic Programming Algorithm" << std::endl;
-            std::cout << "3. Run Greedy Approximation Algorithm" << std::endl;
-            std::cout << "4. Run ILP/Other Advanced Algorithm" << std::endl;
-            std::cout << "5. Compare Algorithm Performance" << std::endl;
-            std::cout << "6. Choose Another Dataset" << std::endl;
+            std::cout << "2. Run Brute Force with Backtracking" << std::endl;
+            std::cout << "3. Run Dynamic Programming Algorithm" << std::endl;
+            std::cout << "4. Run Greedy Approximation Algorithm" << std::endl;
+            std::cout << "5. Run ILP/Other Advanced Algorithm" << std::endl;
+            std::cout << "6. Compare Algorithm Performance" << std::endl;
+            std::cout << "7. Choose Another Dataset" << std::endl;
             std::cout << "0. Exit" << std::endl;
 
-            option = getValidatedIntInput("Select an option: ", 0, 6);
+            option = getValidatedIntInput("Select an option: ", 0, 7);
+
+            if (option == 0) {
+                std::cout << "Exiting..." << std::endl;
+                return;
+            } else if (option == 7) {
+                std::cout << "Returning to dataset selection...\n";
+                break;  // break inner loop to choose another dataset
+            }
 
             switch (option) {
-                case 1: {
+                case 1:
                     printHeader("Brute Force Algorithm");
-                    auto [profit, selected] = BruteForceSolver::solve(dataset);
-                    std::cout << "Max Profit: " << profit << "\n";
-                    std::cout << "Selected Pallets: ";
-                    for (int id : selected) std::cout << id << " ";
-                    std::cout << "\n";
+                    BruteForceSolver::solve(dataset);
                     break;
-                }
-                case 2: {
+                case 2:
+                    printHeader("Brute Force with Backtracking");
+                    BruteForceSolver::solveBacktrack(dataset);
+                    break;
+                case 3:
                     printHeader("Dynamic Programming Algorithm");
                     std::cout << "[TODO] Running Dynamic Programming Algorithm..." << std::endl;
                     break;
-                }
-                case 3: {
+                case 4:
                     printHeader("Greedy Approximation Algorithm");
                     std::cout << "[TODO] Running Greedy Approximation Algorithm..." << std::endl;
                     break;
-                }
-                case 4: {
+                case 5:
                     printHeader("ILP/Other Advanced Algorithm");
                     std::cout << "[TODO] Running ILP/Other Advanced Algorithm..." << std::endl;
                     break;
-                }
-                case 5: {
+                case 6:
                     printHeader("Algorithm Performance Comparison");
                     std::cout << "[TODO] Comparing Algorithms..." << std::endl;
                     break;
-                }
-                case 6:
-                    std::cout << "Returning to dataset selection...\n";
-                    break;
-                case 0:
-                    std::cout << "Exiting..." << std::endl;
-                    break;
             }
         }
-
-        if (option == 0) break;
     }
 }

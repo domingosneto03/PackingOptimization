@@ -12,7 +12,8 @@
 
 class BruteForceSolver {
 public:
-    static std::pair<int, std::vector<int>> solve(const TruckDataset& dataset);
+    static void solve(const TruckDataset& dataset);
+    static void solveBacktrack(const TruckDataset& dataset);
 };
 
 
