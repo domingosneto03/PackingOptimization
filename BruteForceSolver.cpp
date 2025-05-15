@@ -6,9 +6,12 @@ std::pair<int, std::vector<int>> BruteForceSolver::solve(const TruckDataset& dat
     int n = dataset.numPallets;
     int maxProfit = 0;
     std::vector<int> bestSubset;
+    int totalSubsets = 0;
 
     // Iterate over all possible subsets (2^n possibilities)
     for (int mask = 0; mask < (1 << n); ++mask) {
+        ++totalSubsets;
+
         int totalWeight = 0;
         int totalProfit = 0;
         std::vector<int> currentSubset;
@@ -21,11 +24,14 @@ std::pair<int, std::vector<int>> BruteForceSolver::solve(const TruckDataset& dat
             }
         }
 
-        if (totalWeight <= dataset.capacity && totalProfit > maxProfit) {
-            maxProfit = totalProfit;
-            bestSubset = currentSubset;
+        if (totalWeight <= dataset.capacity) {
+            if (totalProfit > maxProfit) {
+                maxProfit = totalProfit;
+                bestSubset = currentSubset;
+            }
         }
     }
 
+    std::cout << "Total subsets explored: " << totalSubsets << "\n";
     return {maxProfit, bestSubset};
 }
