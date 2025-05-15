@@ -7,4 +7,6 @@ add_executable(da_project2 main.cpp
         Reader.h
         Menu.cpp
         Menu.h
+        BruteForceSolver.cpp
+        BruteForceSolver.h
 )
