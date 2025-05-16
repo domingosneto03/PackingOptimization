@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "BruteForceSolver.h"
+#include "DynamicSolver.h"
 #include <iostream>
 #include <string>
 #include <limits>
@@ -90,7 +91,7 @@ void Menu::run() {
                     break;
                 case 3:
                     printHeader("Dynamic Programming Algorithm");
-                    std::cout << "[TODO] Running Dynamic Programming Algorithm..." << std::endl;
+                    DynamicSolver::solve(dataset);
                     break;
                 case 4:
                     printHeader("Greedy Approximation Algorithm");

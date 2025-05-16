@@ -9,4 +9,5 @@ add_executable(da_project2 main.cpp
         Menu.h
         BruteForceSolver.cpp
         BruteForceSolver.h
+        DynamicSolver.cpp
 )
