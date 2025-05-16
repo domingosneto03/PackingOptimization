@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "BruteForceSolver.h"
 #include "DynamicSolver.h"
+#include "GreedySolver.h"
 #include <iostream>
 #include <string>
 #include <limits>
@@ -95,7 +96,7 @@ void Menu::run() {
                     break;
                 case 4:
                     printHeader("Greedy Approximation Algorithm");
-                    std::cout << "[TODO] Running Greedy Approximation Algorithm..." << std::endl;
+                    GreedySolver::solve(dataset);
                     break;
                 case 5:
                     printHeader("ILP/Other Advanced Algorithm");

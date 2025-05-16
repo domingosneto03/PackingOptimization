@@ -10,4 +10,5 @@ add_executable(da_project2 main.cpp
         BruteForceSolver.cpp
         BruteForceSolver.h
         DynamicSolver.cpp
+        GreedySolver.cpp
 )
