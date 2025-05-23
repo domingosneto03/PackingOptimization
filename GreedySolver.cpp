@@ -1,10 +1,11 @@
 #include "GreedySolver.h"
+#include "SolverResult.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <chrono>
 
-void GreedySolver::solve(const TruckDataset& dataset) {
+SolverResult GreedySolver::solve(const TruckDataset& dataset) {
     struct PalletRatio {
         int id;
         int weight;
@@ -19,7 +20,6 @@ void GreedySolver::solve(const TruckDataset& dataset) {
         items.push_back({p.id, p.weight, p.profit, ratio});
     }
 
-    // Sort by descending profit/weight ratio
     std::sort(items.begin(), items.end(), [](const PalletRatio& a, const PalletRatio& b) {
         return a.ratio > b.ratio;
     });
@@ -41,6 +41,7 @@ void GreedySolver::solve(const TruckDataset& dataset) {
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> exec_time = end - start;
 
+    // Output to console for manual run
     std::cout << "\n--- Greedy Approximation Summary ---\n";
     std::cout << "Total Profit: " << totalProfit << "\n";
     std::cout << "Selected Pallets: ";
@@ -48,4 +49,12 @@ void GreedySolver::solve(const TruckDataset& dataset) {
     std::cout << "\n";
     std::cout << "Execution Time: " << exec_time.count() << " ms\n";
     std::cout << "Space Complexity: O(n)\n";
+
+    // Return for performance logging
+    return SolverResult {
+        .solutionValue = static_cast<double>(totalProfit),
+        .timeMs = exec_time.count(),
+        .selectedPallets = selected,
+        .spaceComplexity = "O(n)"
+    };
 }

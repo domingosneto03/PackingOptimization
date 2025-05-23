@@ -2,9 +2,11 @@
 #include "BruteForceSolver.h"
 #include "DynamicSolver.h"
 #include "GreedySolver.h"
+#include "Logger.h"
 #include <iostream>
 #include <string>
 #include <limits>
+#include <chrono>
 
 // Helper function to get validated integer input from user string input
 int Menu::getValidatedIntInput(const std::string& prompt, int min, int max) {
@@ -104,7 +106,24 @@ void Menu::run() {
                     break;
                 case 6:
                     printHeader("Algorithm Performance Comparison");
-                    std::cout << "[TODO] Comparing Algorithms..." << std::endl;
+
+                    std::string datasetName = "dataset_" + std::to_string(datasetChoice);
+                    std::string logFile = "performance_results.csv";
+                    Logger::init(logFile);
+
+                    auto runAndLog = [&](const std::string& name, SolverResult (*solver)(const TruckDataset&)) {
+                        SolverResult result = solver(dataset);
+                        Logger::log(logFile, name, datasetName, result.timeMs, result.solutionValue);
+                        std::cout << name << " -> Time: " << result.timeMs << " ms, Value: " << result.solutionValue << "\n";
+                    };
+
+                    runAndLog("BruteForce", BruteForceSolver::run);
+                    runAndLog("Backtrack", BruteForceSolver::runBacktrack);
+                    runAndLog("Dynamic", DynamicSolver::run);
+                    runAndLog("Greedy", GreedySolver::solve);
+                    // TODO: run ILP if implemented
+
+                    std::cout << "Performance results saved to: " << logFile << std::endl;
                     break;
             }
         }
