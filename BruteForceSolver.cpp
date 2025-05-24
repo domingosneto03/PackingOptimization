@@ -8,7 +8,7 @@
 
 namespace {
     void backtrack(const TruckDataset& dataset, int index, int currentWeight, int currentProfit,
-                   int& maxProfit, std::vector<int>& currentSubset, std::vector<int>& bestSubset) {
+                   double& maxProfit, std::vector<int>& currentSubset, std::vector<int>& bestSubset) {
         if (index == dataset.pallets.size()) {
             if (currentWeight <= dataset.capacity && currentProfit > maxProfit) {
                 maxProfit = currentProfit;
@@ -60,7 +60,7 @@ void BruteForceSolver::solveBacktrack(const TruckDataset& dataset) {
 
 SolverResult BruteForceSolver::run(const TruckDataset& dataset) {
     int n = dataset.numPallets;
-    int maxProfit = 0;
+    double maxProfit = 0;
     std::vector<int> bestSubset;
     uint64_t totalSubsets = 1ULL << n;
     int exploredSubsets = 0;
@@ -101,7 +101,7 @@ SolverResult BruteForceSolver::run(const TruckDataset& dataset) {
 }
 
 SolverResult BruteForceSolver::runBacktrack(const TruckDataset& dataset) {
-    int maxProfit = 0;
+    double maxProfit = 0;
     std::vector<int> currentSubset;
     std::vector<int> bestSubset;
 

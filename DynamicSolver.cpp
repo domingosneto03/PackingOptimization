@@ -50,8 +50,8 @@ SolverResult DynamicSolver::run(const TruckDataset& dataset) {
     std::chrono::duration<double, std::milli> exec_time = end - start;
 
     return SolverResult{
-        .solutionValue = static_cast<double>(maxProfit),
         .timeMs = exec_time.count(),
+        .solutionValue = static_cast<double>(maxProfit),
         .selectedPallets = selected,
         .spaceComplexity = "O(n * W)"
     };

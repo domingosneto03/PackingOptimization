@@ -6,7 +6,8 @@
 
 class GreedySolver {
 public:
-    static SolverResult solve(const TruckDataset& dataset);
+    static void solve(const TruckDataset& dataset);
+    static SolverResult run(const TruckDataset& dataset);
 };
 
 #endif // GREEDY_SOLVER_H

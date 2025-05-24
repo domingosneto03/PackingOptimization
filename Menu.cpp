@@ -112,15 +112,27 @@ void Menu::run() {
                     Logger::init(logFile);
 
                     auto runAndLog = [&](const std::string& name, SolverResult (*solver)(const TruckDataset&)) {
-                        SolverResult result = solver(dataset);
-                        Logger::log(logFile, name, datasetName, result.timeMs, result.solutionValue);
-                        std::cout << name << " -> Time: " << result.timeMs << " ms, Value: " << result.solutionValue << "\n";
+                        const int repetitions = 3;
+                        double totalTime = 0.0;
+                        double totalValue = 0.0;
+
+                        for (int i = 0; i < repetitions; ++i) {
+                            SolverResult result = solver(dataset);
+                            totalTime += result.timeMs;
+                            totalValue += result.solutionValue;
+                        }
+
+                        double avgTime = totalTime / repetitions;
+                        double avgValue = totalValue / repetitions;
+
+                        Logger::log(logFile, name, datasetName, avgTime, avgValue);
+                        std::cout << name << " -> Avg Time: " << avgTime << " ms, Avg Value: " << avgValue << "\n";
                     };
 
                     runAndLog("BruteForce", BruteForceSolver::run);
                     runAndLog("Backtrack", BruteForceSolver::runBacktrack);
                     runAndLog("Dynamic", DynamicSolver::run);
-                    runAndLog("Greedy", GreedySolver::solve);
+                    runAndLog("Greedy", GreedySolver::run);
                     // TODO: run ILP if implemented
 
                     std::cout << "Performance results saved to: " << logFile << std::endl;
