@@ -2,6 +2,7 @@
 #include "BruteForceSolver.h"
 #include "DynamicSolver.h"
 #include "GreedySolver.h"
+#include "ILPSolver.h"
 #include "Logger.h"
 #include <iostream>
 #include <string>
@@ -102,7 +103,7 @@ void Menu::run() {
                     break;
                 case 5:
                     printHeader("ILP/Other Advanced Algorithm");
-                    std::cout << "[TODO] Running ILP/Other Advanced Algorithm..." << std::endl;
+                    ILPSolver::solve(dataset);
                     break;
                 case 6:
                     printHeader("Algorithm Performance Comparison");
@@ -133,7 +134,7 @@ void Menu::run() {
                     runAndLog("Backtrack", BruteForceSolver::runBacktrack);
                     runAndLog("Dynamic", DynamicSolver::run);
                     runAndLog("Greedy", GreedySolver::run);
-                    // TODO: run ILP if implemented
+                    runAndLog("ILP", ILPSolver::run);
 
                     std::cout << "Performance results saved to: " << logFile << std::endl;
                     break;
