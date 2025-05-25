@@ -1,4 +1,6 @@
 #include "BruteForceSolver.h"
+#include "SolverResult.h"
+#include "Logger.h"
 #include <cmath>
 #include <iostream>
 #include <cstdint>
@@ -6,7 +8,7 @@
 
 namespace {
     void backtrack(const TruckDataset& dataset, int index, int currentWeight, int currentProfit,
-                   int& maxProfit, std::vector<int>& currentSubset, std::vector<int>& bestSubset) {
+                   double& maxProfit, std::vector<int>& currentSubset, std::vector<int>& bestSubset) {
         if (index == dataset.pallets.size()) {
             if (currentWeight <= dataset.capacity && currentProfit > maxProfit) {
                 maxProfit = currentProfit;
@@ -32,8 +34,33 @@ namespace {
 }
 
 void BruteForceSolver::solve(const TruckDataset& dataset) {
+    SolverResult result = run(dataset);
+
+    std::cout << "\n--- Brute Force Summary ---\n";
+    std::cout << "Total subsets explored: " << result.exploredSubsets << "\n";
+    std::cout << "Max Profit: " << result.solutionValue << "\n";
+    std::cout << "Selected Pallets: ";
+    for (int id : result.selectedPallets) std::cout << id << " ";
+    std::cout << "\n";
+    std::cout << "Execution Time: " << result.timeMs << " ms\n";
+    std::cout << "Space Complexity: " << result.spaceComplexity << "\n";
+}
+
+void BruteForceSolver::solveBacktrack(const TruckDataset& dataset) {
+    SolverResult result = runBacktrack(dataset);  // call the reusable method
+
+    std::cout << "\n--- Brute Force with Backtracking Summary ---\n";
+    std::cout << "Max Profit: " << result.solutionValue << "\n";
+    std::cout << "Selected Pallets: ";
+    for (int id : result.selectedPallets) std::cout << id << " ";
+    std::cout << "\n";
+    std::cout << "Execution Time: " << result.timeMs << " ms\n";
+    std::cout << "Space Complexity: " << result.spaceComplexity << "\n";
+}
+
+SolverResult BruteForceSolver::run(const TruckDataset& dataset) {
     int n = dataset.numPallets;
-    int maxProfit = 0;
+    double maxProfit = 0;
     std::vector<int> bestSubset;
     uint64_t totalSubsets = 1ULL << n;
     int exploredSubsets = 0;
@@ -55,42 +82,39 @@ void BruteForceSolver::solve(const TruckDataset& dataset) {
             }
         }
 
-        if (totalWeight <= dataset.capacity) {
-            if (totalProfit > maxProfit) {
-                maxProfit = totalProfit;
-                bestSubset = currentSubset;
-            }
+        if (totalWeight <= dataset.capacity && totalProfit > maxProfit) {
+            maxProfit = totalProfit;
+            bestSubset = currentSubset;
         }
     }
 
     auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double, std::milli> exec_time = end - start;
+    double timeMs = std::chrono::duration<double, std::milli>(end - start).count();
 
-    std::cout << "\n--- Brute Force Summary ---\n";
-    std::cout << "Total subsets explored: " << exploredSubsets << "\n";
-    std::cout << "Max Profit: " << maxProfit << "\n";
-    std::cout << "Selected Pallets: ";
-    for (int id : bestSubset) std::cout << id << " ";
-    std::cout << "\n";
-    std::cout << "Execution Time: " << exec_time.count() << " ms\n";
-    std::cout << "Space Complexity: O(n)\n";
+    return {
+        timeMs,
+        maxProfit,
+        exploredSubsets,
+        bestSubset,
+        "O(n)"  // Space complexity
+    };
 }
 
-void BruteForceSolver::solveBacktrack(const TruckDataset& dataset) {
-    int maxProfit = 0;
+SolverResult BruteForceSolver::runBacktrack(const TruckDataset& dataset) {
+    double maxProfit = 0;
     std::vector<int> currentSubset;
     std::vector<int> bestSubset;
 
     auto start = std::chrono::high_resolution_clock::now();
     backtrack(dataset, 0, 0, 0, maxProfit, currentSubset, bestSubset);
     auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double, std::milli> exec_time = end - start;
+    double timeMs = std::chrono::duration<double, std::milli>(end - start).count();
 
-    std::cout << "\n--- Brute Force with Backtracking Summary ---\n";
-    std::cout << "Max Profit: " << maxProfit << "\n";
-    std::cout << "Selected Pallets: ";
-    for (int id : bestSubset) std::cout << id << " ";
-    std::cout << "\n";
-    std::cout << "Execution Time: " << exec_time.count() << " ms\n";
-    std::cout << "Space Complexity: O(n)\n";
+    return {
+        timeMs,
+        maxProfit,
+        -1, // No subset count for backtracking
+        bestSubset,
+        "O(n)"  // or a better estimation if known
+    };
 }

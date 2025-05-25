@@ -2,9 +2,11 @@
 #include "BruteForceSolver.h"
 #include "DynamicSolver.h"
 #include "GreedySolver.h"
+#include "Logger.h"
 #include <iostream>
 #include <string>
 #include <limits>
+#include <chrono>
 
 // Helper function to get validated integer input from user string input
 int Menu::getValidatedIntInput(const std::string& prompt, int min, int max) {
@@ -104,7 +106,36 @@ void Menu::run() {
                     break;
                 case 6:
                     printHeader("Algorithm Performance Comparison");
-                    std::cout << "[TODO] Comparing Algorithms..." << std::endl;
+
+                    std::string datasetName = "dataset_" + std::to_string(datasetChoice);
+                    std::string logFile = "performance_results.csv";
+                    Logger::init(logFile);
+
+                    auto runAndLog = [&](const std::string& name, SolverResult (*solver)(const TruckDataset&)) {
+                        const int repetitions = 3;
+                        double totalTime = 0.0;
+                        double totalValue = 0.0;
+
+                        for (int i = 0; i < repetitions; ++i) {
+                            SolverResult result = solver(dataset);
+                            totalTime += result.timeMs;
+                            totalValue += result.solutionValue;
+                        }
+
+                        double avgTime = totalTime / repetitions;
+                        double avgValue = totalValue / repetitions;
+
+                        Logger::log(logFile, name, datasetName, avgTime, avgValue);
+                        std::cout << name << " -> Avg Time: " << avgTime << " ms, Avg Value: " << avgValue << "\n";
+                    };
+
+                    runAndLog("BruteForce", BruteForceSolver::run);
+                    runAndLog("Backtrack", BruteForceSolver::runBacktrack);
+                    runAndLog("Dynamic", DynamicSolver::run);
+                    runAndLog("Greedy", GreedySolver::run);
+                    // TODO: run ILP if implemented
+
+                    std::cout << "Performance results saved to: " << logFile << std::endl;
                     break;
             }
         }

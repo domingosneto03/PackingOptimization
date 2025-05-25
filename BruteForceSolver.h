@@ -7,13 +7,17 @@
 
 
 #include "Reader.h"
+#include "SolverResult.h"
 #include <vector>
 #include <utility>
 
 class BruteForceSolver {
 public:
     static void solve(const TruckDataset& dataset);
+    static SolverResult run(const TruckDataset& dataset);
     static void solveBacktrack(const TruckDataset& dataset);
+    static SolverResult runBacktrack(const TruckDataset& dataset);
+
 };
 
 

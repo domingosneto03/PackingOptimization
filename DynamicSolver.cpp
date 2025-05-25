@@ -1,9 +1,22 @@
 #include "DynamicSolver.h"
+#include "SolverResult.h"
 #include <iostream>
 #include <vector>
 #include <chrono>
 
 void DynamicSolver::solve(const TruckDataset& dataset) {
+    SolverResult result = run(dataset);
+
+    std::cout << "\n--- Dynamic Programming Summary ---\n";
+    std::cout << "Max Profit: " << result.solutionValue << "\n";
+    std::cout << "Selected Pallets: ";
+    for (int id : result.selectedPallets) std::cout << id << " ";
+    std::cout << "\n";
+    std::cout << "Execution Time: " << result.timeMs << " ms\n";
+    std::cout << "Space Complexity: O(n * W) for tracking, or O(W) for pure value storage\n";
+}
+
+SolverResult DynamicSolver::run(const TruckDataset& dataset) {
     int capacity = dataset.capacity;
     int n = dataset.numPallets;
 
@@ -23,11 +36,9 @@ void DynamicSolver::solve(const TruckDataset& dataset) {
         }
     }
 
-    // Reconstruct solution
     int maxProfit = dp[capacity];
     std::vector<int> selected;
     int w = capacity;
-
     for (int i = n - 1; i >= 0; --i) {
         if (taken[i][w]) {
             selected.push_back(dataset.pallets[i].id);
@@ -38,11 +49,10 @@ void DynamicSolver::solve(const TruckDataset& dataset) {
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> exec_time = end - start;
 
-    std::cout << "\n--- Dynamic Programming Summary ---\n";
-    std::cout << "Max Profit: " << maxProfit << "\n";
-    std::cout << "Selected Pallets: ";
-    for (int id : selected) std::cout << id << " ";
-    std::cout << "\n";
-    std::cout << "Execution Time: " << exec_time.count() << " ms\n";
-    std::cout << "Space Complexity: O(n * W) for tracking, or O(W) for pure value storage\n";
+    return SolverResult{
+        .timeMs = exec_time.count(),
+        .solutionValue = static_cast<double>(maxProfit),
+        .selectedPallets = selected,
+        .spaceComplexity = "O(n * W)"
+    };
 }
