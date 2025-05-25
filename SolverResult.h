@@ -7,6 +7,7 @@
 #define SOLVER_RESULT_H
 
 #include <vector>
+#include <string>
 
 /**
  * @struct SolverResult
