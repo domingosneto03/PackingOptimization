@@ -1,0 +1,102 @@
+\doxysection{Brute\+Force\+Solver Class Reference}
+\hypertarget{class_brute_force_solver}{}\label{class_brute_force_solver}\index{BruteForceSolver@{BruteForceSolver}}
+
+
+Provides methods for solving the knapsack problem using brute-\/force and backtracking.  
+
+
+
+
+{\ttfamily \#include $<$Brute\+Force\+Solver.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_brute_force_solver_aaf241170a40d0685fe5662d3e9de3dcc}{solve}} (const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&dataset)
+\begin{DoxyCompactList}\small\item\em Solves the problem using brute-\/force and prints a summary. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{struct_solver_result}{Solver\+Result}} \mbox{\hyperlink{class_brute_force_solver_ab3162e1638b6f249ee89545fd7a361b1}{run}} (const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&dataset)
+\begin{DoxyCompactList}\small\item\em Runs the brute-\/force algorithm without printing. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_brute_force_solver_ac17d63b8ce0b655ad128323836274e01}{solve\+Backtrack}} (const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&dataset)
+\begin{DoxyCompactList}\small\item\em Solves the problem using recursive backtracking and prints a summary. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{struct_solver_result}{Solver\+Result}} \mbox{\hyperlink{class_brute_force_solver_ad77433e0eb6d291f5a88867bb81bce9d}{run\+Backtrack}} (const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&dataset)
+\begin{DoxyCompactList}\small\item\em Runs the backtracking algorithm without printing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides methods for solving the knapsack problem using brute-\/force and backtracking. 
+
+\label{doc-func-members}
+\Hypertarget{class_brute_force_solver_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_brute_force_solver_ab3162e1638b6f249ee89545fd7a361b1}\index{BruteForceSolver@{BruteForceSolver}!run@{run}}
+\index{run@{run}!BruteForceSolver@{BruteForceSolver}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_brute_force_solver_ab3162e1638b6f249ee89545fd7a361b1} 
+\mbox{\hyperlink{struct_solver_result}{Solver\+Result}} Brute\+Force\+Solver\+::run (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&}]{dataset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Runs the brute-\/force algorithm without printing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The dataset to solve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_solver_result}{Solver\+Result} containing the best solution. @complexity Time\+: O(2\texorpdfstring{$^\wedge$}{\string^}n), Space\+: O(n) 
+\end{DoxyReturn}
+\Hypertarget{class_brute_force_solver_ad77433e0eb6d291f5a88867bb81bce9d}\index{BruteForceSolver@{BruteForceSolver}!runBacktrack@{runBacktrack}}
+\index{runBacktrack@{runBacktrack}!BruteForceSolver@{BruteForceSolver}}
+\doxysubsubsection{\texorpdfstring{runBacktrack()}{runBacktrack()}}
+{\footnotesize\ttfamily \label{class_brute_force_solver_ad77433e0eb6d291f5a88867bb81bce9d} 
+\mbox{\hyperlink{struct_solver_result}{Solver\+Result}} Brute\+Force\+Solver\+::run\+Backtrack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&}]{dataset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Runs the backtracking algorithm without printing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The dataset to solve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_solver_result}{Solver\+Result} containing the best solution. @complexity Time\+: O(2\texorpdfstring{$^\wedge$}{\string^}n), Space\+: O(n) 
+\end{DoxyReturn}
+\Hypertarget{class_brute_force_solver_aaf241170a40d0685fe5662d3e9de3dcc}\index{BruteForceSolver@{BruteForceSolver}!solve@{solve}}
+\index{solve@{solve}!BruteForceSolver@{BruteForceSolver}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily \label{class_brute_force_solver_aaf241170a40d0685fe5662d3e9de3dcc} 
+void Brute\+Force\+Solver\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&}]{dataset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Solves the problem using brute-\/force and prints a summary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The dataset including pallet weights, profits, and truck capacity. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_brute_force_solver_ac17d63b8ce0b655ad128323836274e01}\index{BruteForceSolver@{BruteForceSolver}!solveBacktrack@{solveBacktrack}}
+\index{solveBacktrack@{solveBacktrack}!BruteForceSolver@{BruteForceSolver}}
+\doxysubsubsection{\texorpdfstring{solveBacktrack()}{solveBacktrack()}}
+{\footnotesize\ttfamily \label{class_brute_force_solver_ac17d63b8ce0b655ad128323836274e01} 
+void Brute\+Force\+Solver\+::solve\+Backtrack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&}]{dataset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Solves the problem using recursive backtracking and prints a summary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The dataset to solve. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_brute_force_solver_8h}{Brute\+Force\+Solver.\+h}}\item 
+\mbox{\hyperlink{_brute_force_solver_8cpp}{Brute\+Force\+Solver.\+cpp}}\end{DoxyCompactItemize}

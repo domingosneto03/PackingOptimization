@@ -1,0 +1,37 @@
+\doxysection{Solver\+Result Struct Reference}
+\hypertarget{struct_solver_result}{}\label{struct_solver_result}\index{SolverResult@{SolverResult}}
+
+
+Contains the result of an algorithm run, including timing, solution quality, and space usage.  
+
+
+
+
+{\ttfamily \#include $<$Solver\+Result.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_solver_result_a678ec70c95858ea0f73cceaa8f413c09}\label{struct_solver_result_a678ec70c95858ea0f73cceaa8f413c09} 
+double {\bfseries time\+Ms}
+\begin{DoxyCompactList}\small\item\em Execution time in milliseconds. \end{DoxyCompactList}\item 
+\Hypertarget{struct_solver_result_af3b67dbcea0bf9960b20cea0c27b586e}\label{struct_solver_result_af3b67dbcea0bf9960b20cea0c27b586e} 
+double {\bfseries solution\+Value}
+\begin{DoxyCompactList}\small\item\em Total profit or cost of the solution. \end{DoxyCompactList}\item 
+\Hypertarget{struct_solver_result_ae407bfb6347cb17109adfb00e9b41307}\label{struct_solver_result_ae407bfb6347cb17109adfb00e9b41307} 
+int {\bfseries explored\+Subsets}
+\begin{DoxyCompactList}\small\item\em Number of subsets explored (only for brute-\/force) \end{DoxyCompactList}\item 
+\Hypertarget{struct_solver_result_a2998dc2c4cce6bcd1983013a2e1bf689}\label{struct_solver_result_a2998dc2c4cce6bcd1983013a2e1bf689} 
+std\+::vector$<$ int $>$ {\bfseries selected\+Pallets}
+\begin{DoxyCompactList}\small\item\em IDs of selected pallets. \end{DoxyCompactList}\item 
+\Hypertarget{struct_solver_result_aed88622f88b0281fe1f1b68d62ef3216}\label{struct_solver_result_aed88622f88b0281fe1f1b68d62ef3216} 
+std\+::string {\bfseries space\+Complexity}
+\begin{DoxyCompactList}\small\item\em Space complexity in Big-\/O notation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains the result of an algorithm run, including timing, solution quality, and space usage. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_solver_result_8h}{Solver\+Result.\+h}}\end{DoxyCompactItemize}

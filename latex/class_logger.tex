@@ -1,0 +1,69 @@
+\doxysection{Logger Class Reference}
+\hypertarget{class_logger}{}\label{class_logger}\index{Logger@{Logger}}
+
+
+Handles logging of algorithm performance metrics to a CSV file.  
+
+
+
+
+{\ttfamily \#include $<$Logger.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_logger_a386df3134703fe067d5d1dcac4786f9b}{init}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Initializes a CSV log file with headers. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_logger_abaa0ea1c95288a884baea738698ad773}{log}} (const std\+::string \&filename, const std\+::string \&algorithm, const std\+::string \&dataset, double time\+Ms, double value)
+\begin{DoxyCompactList}\small\item\em Appends a performance result entry to the CSV file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles logging of algorithm performance metrics to a CSV file. 
+
+\label{doc-func-members}
+\Hypertarget{class_logger_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_logger_a386df3134703fe067d5d1dcac4786f9b}\index{Logger@{Logger}!init@{init}}
+\index{init@{init}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_logger_a386df3134703fe067d5d1dcac4786f9b} 
+void Logger\+::init (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Initializes a CSV log file with headers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to the CSV file to create or overwrite. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_logger_abaa0ea1c95288a884baea738698ad773}\index{Logger@{Logger}!log@{log}}
+\index{log@{log}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily \label{class_logger_abaa0ea1c95288a884baea738698ad773} 
+void Logger\+::log (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{, }\item[{const std\+::string \&}]{algorithm}{, }\item[{const std\+::string \&}]{dataset}{, }\item[{double}]{time\+Ms}{, }\item[{double}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Appends a performance result entry to the CSV file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to the CSV file to append to. \\
+\hline
+{\em algorithm} & Name of the algorithm. \\
+\hline
+{\em dataset} & Name or ID of the dataset used. \\
+\hline
+{\em time\+Ms} & Execution time in milliseconds. \\
+\hline
+{\em value} & Resulting solution value (profit). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_logger_8h}{Logger.\+h}}\end{DoxyCompactItemize}

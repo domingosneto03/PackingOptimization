@@ -1,0 +1,54 @@
+\doxysection{Reader Class Reference}
+\hypertarget{class_reader}{}\label{class_reader}\index{Reader@{Reader}}
+
+
+Reads dataset files for truck capacity and pallets.  
+
+
+
+
+{\ttfamily \#include $<$Reader.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \mbox{\hyperlink{class_reader_a6a04b3fa701e8b81197d4fa9af809d76}{read\+Dataset}} (const std\+::string \&truck\+File\+Path, const std\+::string \&pallet\+File\+Path)
+\begin{DoxyCompactList}\small\item\em Reads and parses the dataset from the provided CSV files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Reads dataset files for truck capacity and pallets. 
+
+\label{doc-func-members}
+\Hypertarget{class_reader_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_reader_a6a04b3fa701e8b81197d4fa9af809d76}\index{Reader@{Reader}!readDataset@{readDataset}}
+\index{readDataset@{readDataset}!Reader@{Reader}}
+\doxysubsubsection{\texorpdfstring{readDataset()}{readDataset()}}
+{\footnotesize\ttfamily \label{class_reader_a6a04b3fa701e8b81197d4fa9af809d76} 
+\mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} Reader\+::read\+Dataset (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{truck\+File\+Path}{, }\item[{const std\+::string \&}]{pallet\+File\+Path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Reads and parses the dataset from the provided CSV files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em truck\+File\+Path} & Path to the truck dataset CSV file. \\
+\hline
+{\em pallet\+File\+Path} & Path to the pallet dataset CSV file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A populated \doxylink{struct_truck_dataset}{Truck\+Dataset} structure. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if any file cannot be opened. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_reader_8h}{Reader.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,67 @@
+\doxysection{ILPSolver Class Reference}
+\hypertarget{class_i_l_p_solver}{}\label{class_i_l_p_solver}\index{ILPSolver@{ILPSolver}}
+
+
+Provides a wrapper around an external ILP (Integer Linear Programming) solver.  
+
+
+
+
+{\ttfamily \#include $<$ILPSolver.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_i_l_p_solver_a6d7afdfc9d0e349a28ef7845e1d87f8b}{solve}} (const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&dataset)
+\begin{DoxyCompactList}\small\item\em Solves the pallet selection problem using ILP and prints a summary. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{struct_solver_result}{Solver\+Result}} \mbox{\hyperlink{class_i_l_p_solver_abe93373ef05e036146d5655ae5afab0f}{run}} (const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&dataset)
+\begin{DoxyCompactList}\small\item\em Executes the ILP solver via a Python script and parses the result. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides a wrapper around an external ILP (Integer Linear Programming) solver. 
+
+Uses a Python-\/based script to solve the 0/1 knapsack problem optimally. 
+
+\label{doc-func-members}
+\Hypertarget{class_i_l_p_solver_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_i_l_p_solver_abe93373ef05e036146d5655ae5afab0f}\index{ILPSolver@{ILPSolver}!run@{run}}
+\index{run@{run}!ILPSolver@{ILPSolver}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_i_l_p_solver_abe93373ef05e036146d5655ae5afab0f} 
+\mbox{\hyperlink{struct_solver_result}{Solver\+Result}} ILPSolver\+::run (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&}]{dataset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Executes the ILP solver via a Python script and parses the result. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The input dataset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_solver_result}{Solver\+Result} containing execution time, selected items, and solution value. 
+\end{DoxyReturn}
+\Hypertarget{class_i_l_p_solver_a6d7afdfc9d0e349a28ef7845e1d87f8b}\index{ILPSolver@{ILPSolver}!solve@{solve}}
+\index{solve@{solve}!ILPSolver@{ILPSolver}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily \label{class_i_l_p_solver_a6d7afdfc9d0e349a28ef7845e1d87f8b} 
+void ILPSolver\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&}]{dataset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Solves the pallet selection problem using ILP and prints a summary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The dataset containing pallets and truck capacity. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_i_l_p_solver_8h}{ILPSolver.\+h}}\item 
+\mbox{\hyperlink{_i_l_p_solver_8cpp}{ILPSolver.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,65 @@
+\doxysection{Greedy\+Solver Class Reference}
+\hypertarget{class_greedy_solver}{}\label{class_greedy_solver}\index{GreedySolver@{GreedySolver}}
+
+
+Implements a greedy approximation algorithm for pallet selection.  
+
+
+
+
+{\ttfamily \#include $<$Greedy\+Solver.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_greedy_solver_abecfe0dd9714b538794539bcf61dbd20}{solve}} (const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&dataset)
+\begin{DoxyCompactList}\small\item\em Solves the pallet selection problem using a greedy heuristic and prints results. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{struct_solver_result}{Solver\+Result}} \mbox{\hyperlink{class_greedy_solver_ab03123c11203d824c521a276defb4f32}{run}} (const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&dataset)
+\begin{DoxyCompactList}\small\item\em Runs the greedy approximation algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements a greedy approximation algorithm for pallet selection. 
+
+\label{doc-func-members}
+\Hypertarget{class_greedy_solver_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_greedy_solver_ab03123c11203d824c521a276defb4f32}\index{GreedySolver@{GreedySolver}!run@{run}}
+\index{run@{run}!GreedySolver@{GreedySolver}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_greedy_solver_ab03123c11203d824c521a276defb4f32} 
+\mbox{\hyperlink{struct_solver_result}{Solver\+Result}} Greedy\+Solver\+::run (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&}]{dataset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Runs the greedy approximation algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & Input dataset to solve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_solver_result}{Solver\+Result} with selected pallets and total profit. @complexity Time\+: O(n log n), Space\+: O(n) 
+\end{DoxyReturn}
+\Hypertarget{class_greedy_solver_abecfe0dd9714b538794539bcf61dbd20}\index{GreedySolver@{GreedySolver}!solve@{solve}}
+\index{solve@{solve}!GreedySolver@{GreedySolver}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily \label{class_greedy_solver_abecfe0dd9714b538794539bcf61dbd20} 
+void Greedy\+Solver\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&}]{dataset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Solves the pallet selection problem using a greedy heuristic and prints results. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & Input dataset with pallet info and truck capacity. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_greedy_solver_8h}{Greedy\+Solver.\+h}}\item 
+\mbox{\hyperlink{_greedy_solver_8cpp}{Greedy\+Solver.\+cpp}}\end{DoxyCompactItemize}

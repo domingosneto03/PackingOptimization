@@ -1,0 +1,74 @@
+\doxysection{Reader.\+h}
+\hypertarget{_reader_8h_source}{}\label{_reader_8h_source}\mbox{\hyperlink{_reader_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ DA\_PROJECT2\_READER\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ DA\_PROJECT2\_READER\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_pallet}{Pallet}}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ weight;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ profit;}
+\DoxyCodeLine{00024\ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_truck_dataset}{TruckDataset}}\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ capacity;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{int}\ numPallets;}
+\DoxyCodeLine{00033\ \ \ \ \ std::vector<Pallet>\ pallets;}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_reader}{Reader}}\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_truck_dataset}{TruckDataset}}\ \mbox{\hyperlink{class_reader_a6a04b3fa701e8b81197d4fa9af809d76}{readDataset}}(\textcolor{keyword}{const}\ std::string\&\ truckFilePath,\ \textcolor{keyword}{const}\ std::string\&\ palletFilePath)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_truck_dataset}{TruckDataset}}\ dataset;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ std::ifstream\ truckFile(truckFilePath);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!truckFile.is\_open())\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Could\ not\ open\ truck\ file:\ "{}}\ +\ truckFilePath);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ std::getline(truckFile,\ line);\ \textcolor{comment}{//\ Skip\ header}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::getline(truckFile,\ line))\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ ss(line);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ capacityStr,\ palletCountStr;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(ss,\ capacityStr,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(ss,\ palletCountStr,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ dataset.capacity\ =\ std::stoi(capacityStr);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ dataset.numPallets\ =\ std::stoi(palletCountStr);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ truckFile.close();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ std::ifstream\ palletFile(palletFilePath);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!palletFile.is\_open())\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Could\ not\ open\ pallet\ file:\ "{}}\ +\ palletFilePath);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ std::getline(palletFile,\ line);\ \textcolor{comment}{//\ Skip\ header}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(palletFile,\ line))\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ ss(line);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ idStr,\ weightStr,\ profitStr;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(ss,\ idStr,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(ss,\ weightStr,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(ss,\ profitStr,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_pallet}{Pallet}}\ p\ =\ \{std::stoi(idStr),\ std::stoi(weightStr),\ std::stoi(profitStr)\};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ dataset.pallets.push\_back(p);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ palletFile.close();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dataset;}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DA\_PROJECT2\_READER\_H}}
+
+\end{DoxyCode}

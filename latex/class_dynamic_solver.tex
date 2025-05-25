@@ -1,0 +1,65 @@
+\doxysection{Dynamic\+Solver Class Reference}
+\hypertarget{class_dynamic_solver}{}\label{class_dynamic_solver}\index{DynamicSolver@{DynamicSolver}}
+
+
+Provides a dynamic programming approach for solving the 0/1 knapsack problem.  
+
+
+
+
+{\ttfamily \#include $<$Dynamic\+Solver.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_dynamic_solver_ad02f7dde7b7f3657e9b1ef5f92d7a31d}{solve}} (const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&dataset)
+\begin{DoxyCompactList}\small\item\em Solves the problem and prints a summary using dynamic programming. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{struct_solver_result}{Solver\+Result}} \mbox{\hyperlink{class_dynamic_solver_a8ddcb53221851d4029241e5390db067e}{run}} (const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&dataset)
+\begin{DoxyCompactList}\small\item\em Executes the dynamic programming algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides a dynamic programming approach for solving the 0/1 knapsack problem. 
+
+\label{doc-func-members}
+\Hypertarget{class_dynamic_solver_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_dynamic_solver_a8ddcb53221851d4029241e5390db067e}\index{DynamicSolver@{DynamicSolver}!run@{run}}
+\index{run@{run}!DynamicSolver@{DynamicSolver}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_dynamic_solver_a8ddcb53221851d4029241e5390db067e} 
+\mbox{\hyperlink{struct_solver_result}{Solver\+Result}} Dynamic\+Solver\+::run (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&}]{dataset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Executes the dynamic programming algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The dataset to solve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_solver_result}{Solver\+Result} containing the best solution found. @complexity Time\+: O(n \texorpdfstring{$\ast$}{*} W), Space\+: O(n \texorpdfstring{$\ast$}{*} W) 
+\end{DoxyReturn}
+\Hypertarget{class_dynamic_solver_ad02f7dde7b7f3657e9b1ef5f92d7a31d}\index{DynamicSolver@{DynamicSolver}!solve@{solve}}
+\index{solve@{solve}!DynamicSolver@{DynamicSolver}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily \label{class_dynamic_solver_ad02f7dde7b7f3657e9b1ef5f92d7a31d} 
+void Dynamic\+Solver\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_truck_dataset}{Truck\+Dataset}} \&}]{dataset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Solves the problem and prints a summary using dynamic programming. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & Dataset with pallet weights, profits, and truck capacity. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_dynamic_solver_8h}{Dynamic\+Solver.\+h}}\item 
+\mbox{\hyperlink{_dynamic_solver_8cpp}{Dynamic\+Solver.\+cpp}}\end{DoxyCompactItemize}
