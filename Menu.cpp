@@ -1,3 +1,8 @@
+/**
+ * @file Menu.cpp
+ * @brief Implements the interactive menu to run and compare different algorithms.
+ */
+
 #include "Menu.h"
 #include "BruteForceSolver.h"
 #include "DynamicSolver.h"

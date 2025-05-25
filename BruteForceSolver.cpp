@@ -1,3 +1,8 @@
+/**
+ * @file BruteForceSolver.cpp
+ * @brief Implementation of brute-force and backtracking methods to solve the knapsack problem.
+ */
+
 #include "BruteForceSolver.h"
 #include "SolverResult.h"
 #include "Logger.h"
@@ -7,6 +12,16 @@
 #include <chrono>
 
 namespace {
+/**
+ * @brief Recursive helper function for backtracking solution.
+ * @param dataset The truck dataset.
+ * @param index Current index in pallet list.
+ * @param currentWeight Current total weight.
+ * @param currentProfit Current total profit.
+ * @param maxProfit Best profit found so far.
+ * @param currentSubset Current selection of pallets.
+ * @param bestSubset Best subset of pallets found.
+ */
     void backtrack(const TruckDataset& dataset, int index, int currentWeight, int currentProfit,
                    double& maxProfit, std::vector<int>& currentSubset, std::vector<int>& bestSubset) {
         if (index == dataset.pallets.size()) {
@@ -17,18 +32,17 @@ namespace {
             return;
         }
 
-        // Include current item if it doesn't exceed capacity
+        // Try including current pallet
         int nextWeight = currentWeight + dataset.pallets[index].weight;
         if (nextWeight <= dataset.capacity) {
             currentSubset.push_back(dataset.pallets[index].id);
-            backtrack(dataset, index + 1,
-                      nextWeight,
+            backtrack(dataset, index + 1, nextWeight,
                       currentProfit + dataset.pallets[index].profit,
                       maxProfit, currentSubset, bestSubset);
             currentSubset.pop_back();
         }
 
-        // Skip current item
+        // Try excluding current pallet
         backtrack(dataset, index + 1, currentWeight, currentProfit, maxProfit, currentSubset, bestSubset);
     }
 }
@@ -41,20 +55,18 @@ void BruteForceSolver::solve(const TruckDataset& dataset) {
     std::cout << "Max Profit: " << result.solutionValue << "\n";
     std::cout << "Selected Pallets: ";
     for (int id : result.selectedPallets) std::cout << id << " ";
-    std::cout << "\n";
-    std::cout << "Execution Time: " << result.timeMs << " ms\n";
+    std::cout << "\nExecution Time: " << result.timeMs << " ms\n";
     std::cout << "Space Complexity: " << result.spaceComplexity << "\n";
 }
 
 void BruteForceSolver::solveBacktrack(const TruckDataset& dataset) {
-    SolverResult result = runBacktrack(dataset);  // call the reusable method
+    SolverResult result = runBacktrack(dataset);
 
     std::cout << "\n--- Brute Force with Backtracking Summary ---\n";
     std::cout << "Max Profit: " << result.solutionValue << "\n";
     std::cout << "Selected Pallets: ";
     for (int id : result.selectedPallets) std::cout << id << " ";
-    std::cout << "\n";
-    std::cout << "Execution Time: " << result.timeMs << " ms\n";
+    std::cout << "\nExecution Time: " << result.timeMs << " ms\n";
     std::cout << "Space Complexity: " << result.spaceComplexity << "\n";
 }
 
@@ -92,11 +104,11 @@ SolverResult BruteForceSolver::run(const TruckDataset& dataset) {
     double timeMs = std::chrono::duration<double, std::milli>(end - start).count();
 
     return {
-        timeMs,
-        maxProfit,
-        exploredSubsets,
-        bestSubset,
-        "O(n)"  // Space complexity
+            timeMs,
+            maxProfit,
+            exploredSubsets,
+            bestSubset,
+            "O(n)"
     };
 }
 
@@ -111,10 +123,10 @@ SolverResult BruteForceSolver::runBacktrack(const TruckDataset& dataset) {
     double timeMs = std::chrono::duration<double, std::milli>(end - start).count();
 
     return {
-        timeMs,
-        maxProfit,
-        -1, // No subset count for backtracking
-        bestSubset,
-        "O(n)"  // or a better estimation if known
+            timeMs,
+            maxProfit,
+            -1,
+            bestSubset,
+            "O(n)"
     };
 }

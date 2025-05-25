@@ -1,3 +1,9 @@
+/**
+ * @file GreedySolver.cpp
+ * @brief Implements a greedy heuristic for solving the knapsack problem.
+ * @details Selects items based on profit-to-weight ratio until capacity is full.
+ */
+
 #include "GreedySolver.h"
 #include "SolverResult.h"
 #include <iostream>
@@ -12,8 +18,7 @@ void GreedySolver::solve(const TruckDataset& dataset) {
     std::cout << "Total Profit: " << result.solutionValue << "\n";
     std::cout << "Selected Pallets: ";
     for (int id : result.selectedPallets) std::cout << id << " ";
-    std::cout << "\n";
-    std::cout << "Execution Time: " << result.timeMs << " ms\n";
+    std::cout << "\nExecution Time: " << result.timeMs << " ms\n";
     std::cout << "Space Complexity: " << result.spaceComplexity << "\n";
 }
 
@@ -27,11 +32,13 @@ SolverResult GreedySolver::run(const TruckDataset& dataset) {
 
     std::vector<PalletRatio> items;
 
+    // Calculate profit-to-weight ratio for each pallet
     for (const auto& p : dataset.pallets) {
         double ratio = static_cast<double>(p.profit) / p.weight;
         items.push_back({p.id, p.weight, p.profit, ratio});
     }
 
+    // Sort pallets by decreasing ratio
     std::sort(items.begin(), items.end(), [](const PalletRatio& a, const PalletRatio& b) {
         return a.ratio > b.ratio;
     });
@@ -42,6 +49,7 @@ SolverResult GreedySolver::run(const TruckDataset& dataset) {
 
     auto start = std::chrono::high_resolution_clock::now();
 
+    // Pick items greedily while they fit
     for (const auto& item : items) {
         if (item.weight <= remainingCapacity) {
             selected.push_back(item.id);
@@ -54,9 +62,9 @@ SolverResult GreedySolver::run(const TruckDataset& dataset) {
     std::chrono::duration<double, std::milli> exec_time = end - start;
 
     return SolverResult{
-        .timeMs = exec_time.count(),
-        .solutionValue = static_cast<double>(totalProfit),
-        .selectedPallets = selected,
-        .spaceComplexity = "O(n)"
+            .timeMs = exec_time.count(),
+            .solutionValue = static_cast<double>(totalProfit),
+            .selectedPallets = selected,
+            .spaceComplexity = "O(n)"
     };
 }

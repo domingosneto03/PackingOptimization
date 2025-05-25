@@ -1,3 +1,10 @@
+/**
+ * @file DynamicSolver.cpp
+ * @brief Implements a dynamic programming solution to the knapsack problem.
+ * @details Builds up solutions for increasing capacities using tabulation. Uses a boolean tracking
+ * matrix to reconstruct the optimal set of selected pallets.
+ */
+
 #include "DynamicSolver.h"
 #include "SolverResult.h"
 #include <iostream>
@@ -11,8 +18,7 @@ void DynamicSolver::solve(const TruckDataset& dataset) {
     std::cout << "Max Profit: " << result.solutionValue << "\n";
     std::cout << "Selected Pallets: ";
     for (int id : result.selectedPallets) std::cout << id << " ";
-    std::cout << "\n";
-    std::cout << "Execution Time: " << result.timeMs << " ms\n";
+    std::cout << "\nExecution Time: " << result.timeMs << " ms\n";
     std::cout << "Space Complexity: O(n * W) for tracking, or O(W) for pure value storage\n";
 }
 
@@ -20,7 +26,10 @@ SolverResult DynamicSolver::run(const TruckDataset& dataset) {
     int capacity = dataset.capacity;
     int n = dataset.numPallets;
 
+    // dp[j] holds max profit for capacity j
     std::vector<int> dp(capacity + 1, 0);
+
+    // taken[i][j] is true if pallet i is included in optimal solution for capacity j
     std::vector<std::vector<bool>> taken(n, std::vector<bool>(capacity + 1, false));
 
     auto start = std::chrono::high_resolution_clock::now();
@@ -36,6 +45,7 @@ SolverResult DynamicSolver::run(const TruckDataset& dataset) {
         }
     }
 
+    // Reconstruct selected pallets
     int maxProfit = dp[capacity];
     std::vector<int> selected;
     int w = capacity;
@@ -50,9 +60,9 @@ SolverResult DynamicSolver::run(const TruckDataset& dataset) {
     std::chrono::duration<double, std::milli> exec_time = end - start;
 
     return SolverResult{
-        .timeMs = exec_time.count(),
-        .solutionValue = static_cast<double>(maxProfit),
-        .selectedPallets = selected,
-        .spaceComplexity = "O(n * W)"
+            .timeMs = exec_time.count(),
+            .solutionValue = static_cast<double>(maxProfit),
+            .selectedPallets = selected,
+            .spaceComplexity = "O(n * W)"
     };
 }
